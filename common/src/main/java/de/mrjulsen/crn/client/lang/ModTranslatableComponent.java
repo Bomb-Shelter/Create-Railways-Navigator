@@ -25,8 +25,6 @@ import net.minecraft.network.chat.*;
 import net.minecraft.network.chat.contents.TranslatableFormatException;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.entity.Entity;
-import net.neoforged.fml.loading.FMLEnvironment;
-import net.neoforged.neoforge.common.util.InsertingContents;
 
 import javax.annotation.Nullable;
 
@@ -72,14 +70,14 @@ public class ModTranslatableComponent implements ComponentContents {
         this.key = key;
         this.fallback = fallback;
         this.args = args;
-        if (!FMLEnvironment.production) {
-            for(Object arg : this.args) {
-                if (!(arg instanceof Component) && !isAllowedPrimitiveArgument(arg)) {
-                    String var10002 = String.valueOf(arg);
-                    throw new IllegalArgumentException("ModTranslatableComponent' arguments must be either a Component, Number, Boolean, or a String. Was given " + var10002 + " for " + this.key);
-                }
-            }
-        }
+//        if (!FMLEnvironment.production) {
+//            for(Object arg : this.args) {
+//                if (!(arg instanceof Component) && !isAllowedPrimitiveArgument(arg)) {
+//                    String var10002 = String.valueOf(arg);
+//                    throw new IllegalArgumentException("ModTranslatableComponent' arguments must be either a Component, Number, Boolean, or a String. Was given " + var10002 + " for " + this.key);
+//                }
+//            }
+//        }
 
     }
 

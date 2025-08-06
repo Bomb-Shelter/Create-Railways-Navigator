@@ -24,6 +24,9 @@ subprojects {
     }
 
     repositories {
+        maven { url = "https://mvn.devos.one/snapshots" }
+        maven { url = "https://maven.terraformersmc.com/releases"}
+        mavenLocal()
         maven { url = "file://${System.getProperty('user.home')}/.m2/github/modsrepo/maven" } // Local
         maven { url = "https://maven.parchmentmc.org" } // ParchmentMC
         maven { url = "https://raw.githubusercontent.com/MisterJulsen/modsrepo/main/maven" } // DragonLib
