@@ -1,6 +1,7 @@
 package de.mrjulsen.crn.client;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 import com.simibubi.create.foundation.utility.CreateLang;
@@ -306,8 +307,8 @@ public class ClientWrapper {
 
 
         int backgroundId = 0;
-        if (itemStack.has(ModDataComponents.NAVIGATOR_BACKGROUND_COMPONENT)) {
-            backgroundId = itemStack.get(ModDataComponents.NAVIGATOR_BACKGROUND_COMPONENT).backgroundId();
+        if (itemStack.has(ModDataComponents.NAVIGATOR_BACKGROUND_COMPONENT.get())) {
+            backgroundId = Objects.requireNonNull(itemStack.get(ModDataComponents.NAVIGATOR_BACKGROUND_COMPONENT.get())).backgroundId();
         }
         
         Font font = Minecraft.getInstance().font;
