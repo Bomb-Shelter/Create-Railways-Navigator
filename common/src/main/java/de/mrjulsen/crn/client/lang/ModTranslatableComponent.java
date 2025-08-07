@@ -89,12 +89,6 @@ public class ModTranslatableComponent implements ComponentContents {
         Language language = ClientWrapper.getCurrentClientLanguage();;
         if (language != this.decomposedWith) {
             this.decomposedWith = language;
-            Component langComponent = language.getComponent(this.key);
-            if (langComponent != null) {
-                this.decomposedParts = ImmutableList.of(langComponent);
-                return;
-            }
-
             String s = this.fallback != null ? language.getOrDefault(this.key, this.fallback) : language.getOrDefault(this.key);
 
             try {

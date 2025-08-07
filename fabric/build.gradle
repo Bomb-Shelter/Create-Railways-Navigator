@@ -1,0 +1,73 @@
+plugins {
+    id 'com.github.johnrengelman.shadow'
+}
+
+architectury {
+    platformSetupLoomIde()
+    fabric()
+}
+
+loom {
+    mixin{
+        useLegacyMixinAp = false
+    }
+}
+
+configurations {
+    common {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentFabric.extendsFrom common
+
+    shadowBundle {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+}
+
+dependencies {
+    modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
+
+    // Fabric API. This is technically optional, but you probably want it anyway.
+    modImplementation "net.fabricmc.fabric-api:fabric-api:$rootProject.fabric_api_version"
+
+    modImplementation("dev.architectury:architectury-fabric:${rootProject.architectury_api_version}")
+    modImplementation("com.electronwill.night-config:toml:3.6.0")
+    modImplementation("com.terraformersmc:modmenu:${rootProject.modmenu_version}")
+    modImplementation("fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${rootProject.forge_config_api_port_version}")
+    modImplementation(include("de.mrjulsen.mcdragonlib:dragonlib-fabric:${rootProject.minecraft_version}-${rootProject.dragonlib_version}"))
+    modImplementation("net.createmod.ponder:Ponder-Fabric-${minecraft_version}:${ponder_fabric_version}")
+
+    modImplementation files ("/locallib/create.jar")
+    modCompileOnly("com.tterrag.registrate_fabric:Registrate-Fabric:${registrate_version}") {
+        exclude(group: "io.github.fabricators_of_create")
+    }
+
+    common(project(path: ':common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
+    def portingLibModules = ["core"]
+
+    for (def module in portingLibModules) {
+        include(modImplementation("io.github.fabricators_of_create.Porting-Lib:${module}:${porting_lib_version}"))
+    }
+}
+
+processResources {
+    inputs.property 'version', project.version
+
+    filesMatching('fabric.mod.json') {
+        expand version: project.version
+    }
+}
+
+shadowJar {
+    configurations = [project.configurations.shadowBundle]
+    archiveClassifier = 'dev-shadow'
+}
+
+remapJar {
+    input.set shadowJar.archiveFile
+}
