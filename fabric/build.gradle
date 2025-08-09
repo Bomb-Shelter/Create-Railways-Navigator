@@ -48,7 +48,7 @@ dependencies {
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
-    def portingLibModules = ["core"]
+    def portingLibModules = ["core", "model_loader", "obj_loader"]
 
     for (def module in portingLibModules) {
         include(modImplementation("io.github.fabricators_of_create.Porting-Lib:${module}:${porting_lib_version}"))
