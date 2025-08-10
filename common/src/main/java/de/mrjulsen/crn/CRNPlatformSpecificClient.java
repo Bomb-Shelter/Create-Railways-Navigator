@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.Block;
 public class CRNPlatformSpecificClient {
 
     @ExpectPlatform
-    public static void registerCTBehviour(Block entry, Supplier<ConnectedTextureBehaviour> behaviorSupplier) {
+    public static void registerCTBehaviour(Block entry, Supplier<ConnectedTextureBehaviour> behaviorSupplier) {
         throw new AssertionError();
 	}   
 }

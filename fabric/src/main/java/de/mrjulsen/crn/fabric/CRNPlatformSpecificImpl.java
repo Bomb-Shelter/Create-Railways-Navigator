@@ -25,9 +25,6 @@ import dev.architectury.platform.Platform;
 import dev.architectury.utils.Env;
 
 public class CRNPlatformSpecificImpl {
-    /**
-     * This is our actual method to {@link CRNPlatformSpecific#getConfigDirectory()}.
-     */
     public static Path getConfigDirectory() {
         return FabricLoader.getInstance().getConfigDir();
     }
@@ -67,9 +64,6 @@ public class CRNPlatformSpecificImpl {
         if (server != null) {
             GameProfileCache profileCache = server.getProfileCache();
             if (profileCache != null) {
-                // Note: GameProfileCache doesn't provide a direct way to get all cached profiles
-                // This is a limitation compared to NeoForge's UsernameCache
-                // We can only return currently online players as a fallback
                 server.getPlayerList().getPlayers().forEach(player -> {
                     result.put(player.getUUID(), player.getGameProfile().getName());
                 });

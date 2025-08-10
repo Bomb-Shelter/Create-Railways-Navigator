@@ -28,8 +28,8 @@ public class ClientWrapper {
     public static final CTSpriteShiftEntry CT_HORIZONTAL_ADVANCED_DISPLAY_SMALL_BORDER = ClientWrapper.getCT(AllCTTypes.HORIZONTAL_KRYPPERS, "advanced_display_small_border", "advanced_display_small_border");
 
 
-	public static void registerCTBehviour(Block entry, Supplier<ConnectedTextureBehaviour> behaviorSupplier) {
-		CRNPlatformSpecificClient.registerCTBehviour(entry, behaviorSupplier);
+	public static void registerCTBehaviour(Block entry, Supplier<ConnectedTextureBehaviour> behaviorSupplier) {
+		CRNPlatformSpecificClient.registerCTBehaviour(entry, behaviorSupplier);
 	}
     
 	public static CTSpriteShiftEntry getCT(CTType type, String blockTextureName, String connectedTextureName) {

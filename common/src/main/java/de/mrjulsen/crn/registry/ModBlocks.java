@@ -139,7 +139,7 @@ public class ModBlocks {
 
 	public static <T extends Block> NonNullConsumer<? super T> connectedTextures(
 		Supplier<ConnectedTextureBehaviour> behavior) {
-		return entry -> onClient(() -> () -> ClientWrapper.registerCTBehviour(entry, behavior));
+		return entry -> onClient(() -> () -> ClientWrapper.registerCTBehaviour(entry, behavior));
 	}
 
 	protected static void onClient(Supplier<Runnable> toRun) {
